@@ -1,0 +1,19 @@
+{
+  "coordinates": {
+    "org": "com.yieldbot.devops",
+    "name": "sensu-yieldbot-handler-statsd",
+    "type": "deployable"
+  },
+  "build": [
+    "make all"
+  ],
+  "version": [
+    "make version"
+  ],
+  "bump": [
+    "make version_bump"
+  ],
+  "clean": [
+    "make clean"
+  ]
+}
