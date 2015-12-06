@@ -35,6 +35,8 @@ sudo chmod 0755 /etc/profile.d/gopath.sh
 source /etc/profile.d/gopath.sh
 touch /home/vagrant/.ssh/config chown vagrant:vagrant /home/vagrant/.ssh/config
 chmod 600 /home/vagrant/.ssh/config
+go get -u github.com/golang/lint/golint
+go get github.com/mitchellh/gox
 cat << 'EOF' >> /home/vagrant/.ssh/config
 StrictHostKeyChecking no
 EOF
