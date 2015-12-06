@@ -9,32 +9,33 @@ package main
 
 import (
 	"flag"
+	"github.com/quipo/statsd"
 	dracky "github.com/yieldbot/sensu-yieldbot-library/src"
-  "github.com/quipo/statsd"
 )
 
 func main() {
 
-  // set commandline flags
-	HostPtr := flag.String("host", "localhost" "the statsd host")
+	// set commandline flags
+	HostPtr := flag.String("host", "localhost", "the statsd host")
 	PortPtr := flag.String("port", "8125", "the statsd port")
-  ProtocolPtr := flag.String("protocol", "udp", "the protocol to connect with")
+	ProtocolPtr := flag.String("protocol", "udp", "the protocol to connect with")
 
 	flag.Parse()
 	statsdHost := *HostPtr
 	statsdPort := *PortPtr
-  statsdProtocol := *ProtocolPtr
+	statsdProtocol := *ProtocolPtr
 
-   statsdclient := statsd.NewStatsdClient(statsdHost + ":" + statsdPort)
-   statsdclient.CreateSocket()
-   defer stats.Close()
+	statsdClient := statsd.NewStatsdClient(statsdHost+":"+statsdPort, "")
+	statsdClient.CreateSocket()
+	defer statsdClient.Close()
 
-   sensuEvent := new(dracky.SensuEvent)
-   sensuEvent = sensuEvent.AcquireSensuEvent()
+	sensuEvent := new(dracky.SensuEvent)
+	sensuEvent = sensuEvent.AcquireSensuEvent()
 
-   metricData := sensuEvent.Check.Output
+	metricData := sensuEvent.Check.Output
 
-   for i, m := range metricData {
-     statsdclient.SesdEvent(m)
-   }
- }
+	for i, m := range metricData {
+		// I need to break up the metric into the string and the value
+		statsdClient.FAbsolute(m, 0)
+	}
+}
