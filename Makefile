@@ -198,7 +198,12 @@ dist: build pre-dist
 
 # run the golang formatting tool on all files in the current src directory
 format:
-	OUT=`gofmt -l ./src/($pkg)/*.go`; if [ "$$OUT" ]; then echo $$OUT; exit 1; fi
+	@OUT=`gofmt -l .`;\
+	if [ "$$OUT" ]; then \
+	  echo $$OUT; exit 1; \
+	else \
+	  echo "formating is complete"; \
+	fi; \
 
 # fix any detected formatting issues
 format_correct:
@@ -231,7 +236,12 @@ help:
 
 # run the golang linting tool
 lint:
-	@OUT=`golint ./...`; if [ "$$OUT" ]; then echo $$OUT; exit 1; fi
+	@OUT=`golint ./...`;\
+	if [ "$$OUT" ]; then \
+	  echo $$OUT; exit 1; \
+	else \
+	  echo "Linting is complete"; \
+	fi; \
 
 maintainer-clean:
 	@echo "this needs to be implemented"
@@ -275,4 +285,9 @@ version_bump:
 
 # run go vet
 vet:
-	@go vet ./...
+	@go vet ./...;\
+	if [ "$$OUT" ]; then \
+	  echo $$OUT; exit 1; \
+	else \
+	  echo "Vet is complete"; \
+	fi; \
