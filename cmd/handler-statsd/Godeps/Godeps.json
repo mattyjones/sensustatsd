@@ -1,0 +1,20 @@
+{
+	"ImportPath": "github.com/yieldbot/sensustatsd/cmd/handler-statsd",
+	"GoVersion": "go1.5",
+	"Deps": [
+		{
+			"ImportPath": "github.com/quipo/statsd",
+			"Rev": "1c66a23d163c4d9aee3728263e8ec19fafbff336"
+		},
+		{
+			"ImportPath": "github.com/yieldbot/sensuplugin/sensuhandler",
+			"Comment": "v1.0.0-62-g342a9b2",
+			"Rev": "342a9b28cc04d60c953e16b997c79e9030ffe616"
+		},
+		{
+			"ImportPath": "github.com/yieldbot/sensuplugin/sensuutil",
+			"Comment": "v1.0.0-62-g342a9b2",
+			"Rev": "342a9b28cc04d60c953e16b997c79e9030ffe616"
+		}
+	]
+}

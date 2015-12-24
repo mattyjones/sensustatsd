@@ -10,7 +10,7 @@ package main
 import (
 	"flag"
 	"github.com/quipo/statsd"
-	dracky "github.com/yieldbot/sensu-yieldbot-library/src"
+	"github.com/yieldbot/sensuplugin/sensuhandler"
 )
 
 func main() {
@@ -29,7 +29,7 @@ func main() {
 	statsdClient.CreateSocket()
 	defer statsdClient.Close()
 
-	sensuEvent := new(dracky.SensuEvent)
+	sensuEvent := new(sensuhandler.SensuEvent)
 	sensuEvent = sensuEvent.AcquireSensuEvent()
 
 	metricData := sensuEvent.Check.Output

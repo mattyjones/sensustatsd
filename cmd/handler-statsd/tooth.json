@@ -1,0 +1,16 @@
+{
+  "coordinates": {
+    "org": "sensustatsd",
+    "name": "handler-statsd",
+    "type": "golang"
+  },
+  "build": [
+    "make -f ../../Makefile srcdir=../ pkg=handler-statsd all"
+  ],
+  "version": [
+    "make -f ../../Makefile version"
+  ],
+  "clean": [
+    "ake -f ../../Makefile srcdir=../.. clean"
+  ]
+}
